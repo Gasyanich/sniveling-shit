@@ -1,0 +1,69 @@
+<body class="mat-app-background">
+  <div class="parent" *ngIf="isShowSpinner">
+    <div class="block">
+      <mat-spinner style="display: block; margin: 0 auto;"></mat-spinner>
+      <p style="text-align: center;">
+        <br/>
+        Грузиться может долго,ребята из вк не очень охотно отвечают :'c
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="!isShowSpinner" class="mat-app-background" style="height: 100%;">
+
+    <h3>
+      <p>Some statistics:</p>
+    </h3>
+
+    <div class="table-container">
+      <p>Me:</p>
+      <table mat-table [dataSource]="meDataSource" class="mat-elevation-z8">
+        <!-- Name Column -->
+        <ng-container matColumnDef="Message">
+          <th mat-header-cell *matHeaderCellDef class="col-width"> Message </th>
+          <td mat-cell *matCellDef="let mci"> {{mci.message}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Count">
+          <th mat-header-cell *matHeaderCellDef class="col-width"> Count </th>
+          <td mat-cell *matCellDef="let mci"> {{mci.count}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['Message','Count']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['Message','Count'];"></tr>
+      </table>
+    </div>
+
+    <div class="table-container">
+      <p>You:</p>
+      <table mat-table [dataSource]="youDataSource" class="mat-elevation-z8">
+        <!-- Name Column -->
+        <ng-container matColumnDef="Message">
+          <th mat-header-cell *matHeaderCellDef class="col-width"> Message </th>
+          <td mat-cell *matCellDef="let mci"> {{mci.message}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Count">
+          <th mat-header-cell *matHeaderCellDef class="col-width"> Count </th>
+          <td mat-cell *matCellDef="let mci"> {{mci.count}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['Message','Count']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['Message','Count'];"></tr>
+      </table>
+    </div>
+
+    <p class="timer">
+      Duration time:
+      <br />
+      <span>{{duringTimeInfo.hour}}:{{duringTimeInfo.getMinute()}}:{{duringTimeInfo.getSecond()}}</span>
+    </p>
+    <p style="text-align: center;">
+      *тут должна быть луна красивая... 🌚*
+      <br />
+      <span style="font-size: small;">Почти люблю!🖤</span>
+    </p>
+  </div>
+</body>
