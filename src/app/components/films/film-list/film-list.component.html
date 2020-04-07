@@ -1,3 +1,45 @@
-<p>
-  film-list works!
-</p>
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title style="font-size: 1.5em;">Our's films</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-selection-list #listSelectedFilms
+      (selectionChange)="onSelection($event, listSelectedFilms.selectedOptions.selected)">
+      <div class="films-header">
+        <div mat-subheader>Films</div>
+        <div>
+          <button mat-icon-button matTooltip="Добавить" (click)="setEditFormVisible()">
+            <mat-icon color="primary" *ngIf="!isEditInputVisible">expand_more</mat-icon>
+            <mat-icon color="primary" *ngIf="isEditInputVisible">expand_less</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Найти" disabled>
+            <mat-icon color="primary">search</mat-icon>
+          </button>
+          <button *ngIf="selectedFilms.length > 0" (click)="deleteFilms()" mat-icon-button matTooltip="Найти">
+            <mat-icon color="primary">delete</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div [ngClass]="{'invisible': !isEditInputVisible, 'visible':isEditInputVisible}" class="film-form">
+        <mat-form-field class="full-width">
+          <mat-label>Film's name</mat-label>
+          <input matInput placeholder="Type film name" value="value" [(ngModel)]="selectedFilm.name">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Film's genre</mat-label>
+          <input matInput placeholder="Type film genre" value="value" [(ngModel)]="selectedFilm.genre">
+        </mat-form-field>
+        <app-ok-cancel-buttons (ok)="addFilm()" (cancel)="cancelAddingFilm()" okText="Add film">
+        </app-ok-cancel-buttons>
+        <mat-divider style="margin-top: 5px;"></mat-divider>
+      </div>
+
+      <mat-list-option *ngFor="let film of films" class="full-width" [value]="film">
+        <div mat-line>{{film.name}} <span style="font-size: 0.8em;">{{getFilmStatus(film)}}</span> </div>
+        <div mat-line style="font-size: 0.75em;"> {{film.genre}} </div>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-card-content>
+</mat-card>

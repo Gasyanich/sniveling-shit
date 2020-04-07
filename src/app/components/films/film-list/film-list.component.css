@@ -1,0 +1,29 @@
+.card{
+    height: 100%;    
+    margin: 0 auto;    
+}
+
+.invisible{
+    display: none;
+}
+
+.visible{
+    display: inline;
+}
+
+
+
+.full-width{
+    width: 100%;
+}
+
+.films-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.film-form{
+    margin-bottom: 5px;
+}
