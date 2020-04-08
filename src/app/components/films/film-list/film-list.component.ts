@@ -17,7 +17,7 @@ export class FilmListComponent implements OnInit {
   public selectedFilms: Film[];
   public isMarkingFilms: boolean;
 
-  @ViewChild('listSelectedFilms', { static: false }) matSelectedFilms: MatSelectionList;
+  @ViewChild('listSelectedFilms') matSelectedFilms: MatSelectionList;
 
   constructor(private _filmService: FilmService) {
     this.selectedFilms = [];
