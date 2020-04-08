@@ -1,6 +1,7 @@
 import { Film } from '../../../data/films/film';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FilmService } from '../../../services/film.service';
+import { MatSelectionList } from "@angular/material/list";
 
 export class FeatureRoutingModule { }
 
@@ -14,9 +15,13 @@ export class FilmListComponent implements OnInit {
   public films: Film[];
   public selectedFilm: Film;
   public selectedFilms: Film[];
+  public isMarkingFilms: boolean;
+
+  @ViewChild('listSelectedFilms', { static: false }) matSelectedFilms: MatSelectionList;
 
   constructor(private _filmService: FilmService) {
     this.selectedFilms = [];
+    this.isMarkingFilms = false;
   }
 
   ngOnInit() {
@@ -32,6 +37,21 @@ export class FilmListComponent implements OnInit {
   private readFilms(): void {
     this._filmService.getFilms().subscribe(films => this.films = films);
   }
+
+
+  public markAsViewed(): void {
+    this.isMarkingFilms = true;
+
+    this._filmService.markAsViewed(this.selectedFilms).subscribe(viewedFilms => {
+      this.films.filter(film => viewedFilms.map(film => film.id).includes(film.id)).forEach(viewedFilm => {
+        viewedFilm.isViewed = true;
+      });
+      this.matSelectedFilms.deselectAll();
+
+      this.isMarkingFilms = false;
+    });
+  }
+
 
   public getFilmStatus(film: Film): string {
     return film.isViewed
@@ -49,7 +69,7 @@ export class FilmListComponent implements OnInit {
     this.selectedFilm = this.selectedFilms[0];
   }
 
-  isAnySelection(): boolean {
+  public isAnySelection(): boolean {
     return this.selectedFilms.length > 0;
   }
 }

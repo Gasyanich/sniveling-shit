@@ -47,6 +47,16 @@ export class FilmService extends BaseCrudService<Film> {
         return this.updateItem(preparedFilm, filmId);
     }
 
+    public markAsViewed(films: Film[]): Observable<Film[]> {
+        films.forEach(film => {
+            film.isViewed = true;
+        });
+
+        const preparedFilms = films.map(film => this.prepareBeforeSendFilm(film));
+
+        return this.http.put<Film[]>(this.getFullApiUrl() + this.getControllerName() + "/markAsViewed", preparedFilms);
+    }
+
     private prepareBeforeSendFilm(film: Film): Film {
         if (film.isViewed)
             film.status = Film.viewed;

@@ -24,9 +24,16 @@
             <mat-icon *ngIf="!isAnySelection()">create</mat-icon>
           </button>
 
-          <button mat-icon-button matTooltip="Delete films" [disabled]="!(isAnySelection())" (click)="deleteFilms()">
+          <button mat-icon-button matTooltip="Delete seletcted films" [disabled]="!(isAnySelection())"
+            (click)="deleteFilms()">
             <mat-icon *ngIf="isAnySelection()" color="primary">delete</mat-icon>
             <mat-icon *ngIf="!isAnySelection()">delete</mat-icon>
+          </button>
+
+          <button mat-icon-button matTooltip="Mark selected as viewed" [disabled]="!(isAnySelection())"
+            (click)="markAsViewed()">
+            <mat-icon *ngIf="isAnySelection()" color="primary">visibility</mat-icon>
+            <mat-icon *ngIf="!isAnySelection()">visibility</mat-icon>
           </button>
         </div>
       </div>
