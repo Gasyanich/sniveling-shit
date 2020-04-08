@@ -9,12 +9,7 @@ export class OkCancelButtonsComponent implements OnInit {
 
   @Output() public ok = new EventEmitter();
   @Output() public cancel = new EventEmitter();
-
-  @Input() public okText: string;
-
-  public getOkText() {
-    return this.okText ? this.okText : "Ok";
-  }
+  @Input() public okButtonText: string;
 
   constructor() { }
 

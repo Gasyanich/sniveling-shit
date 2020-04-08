@@ -1,0 +1,7 @@
+.card {
+    max-width: 95%;
+    min-width: 80%;
+    margin: 30px auto;
+    min-height: 70%;
+    max-height: 100%;
+  }

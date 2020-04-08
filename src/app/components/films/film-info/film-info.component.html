@@ -1,0 +1,13 @@
+<h2>{{title}}</h2>
+
+<div style="display: flex; flex-direction: column;" *ngIf="film">
+  <mat-form-field class="full-width">
+    <mat-label>Film's name</mat-label>
+    <input matInput placeholder="Type film's name" value="value" [(ngModel)]="film.name">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Genre</mat-label>
+    <input matInput placeholder="Type genre" value="value" [(ngModel)]="film.genre">
+  </mat-form-field>
+</div>
