@@ -10,11 +10,11 @@
     <mat-sidenav #snav [mode]="'over'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
         <a mat-list-item [routerLink]="['/vkstat']" (click)="snav.close()">
-          <mat-icon>equalizer</mat-icon>
+          <mat-icon color="primary">equalizer</mat-icon>
           VK stat
         </a>
         <a mat-list-item [routerLink]="['/films']" (click)="snav.close()">
-          <mat-icon>movie</mat-icon>
+          <mat-icon color="primary">movie</mat-icon>
           Films
         </a>
       </mat-nav-list>
